@@ -1,0 +1,94 @@
+#input data structure 
+#a1
+#   a11
+#   a12
+#       a121
+#   b12
+#b2
+
+
+obje={}
+obje[0]={"title":"a1","depth":0}
+obje[1]={"title":"a11","depth":1}
+obje[2]={"title":"a12","depth":1}
+obje[3]={"title":"a121","depth":2}
+obje[4]={"title":"b13","depth":1}
+obje[5]={"title":"b2","depth":0}
+
+
+
+
+#defining new dictonary as content.
+content={}
+basic_index=-1
+#iterating through all elements in obje dictionery in order.
+for i in range(len(obje)):
+    if obje[i]["depth"]==0:
+        
+        #will create a title ,depth,item keys and give them values.
+        #items in this is not defined as dictonery yet
+        
+        basic_index=basic_index+1
+        
+        #for first iterration it will be 1.
+        #for each 0 depth block it will increse accordingly.
+        
+        content[basic_index]={"title":obje[i]["title"],"depth":obje[i]["depth"],"item":"some more block"}
+        
+        #now further if we get anyblock in depth 1 we activate declaration variable 
+        #so that only when new depth 0 block comes it declares new list.
+        #otherwise it will create list again and again.
+        
+        declaration_variable1=1
+        
+    if obje[i]["depth"]==1:
+        
+        #this nested if will run only at initiation for declaration.
+        #it declares "items" in depth 0 as dectionary.
+        #which will be used to store all depth 1 elements.
+        
+        if declaration_variable1==1:
+            
+            content[basic_index]["item"]={}
+            
+            #reseting declaration variable.
+            #so only when new depth 0 element comes it can be called again.
+            
+            declaration_variable1=0
+            
+            index_count_1=-1
+            
+        #itarates for every i in this statement 
+        index_count_1=index_count_1+1
+        
+        content[basic_index]["item"][index_count_1]={"title":obje[i]["title"],"depth":obje[i]["depth"],"item":"some more block"}
+        
+        declaration_variable2=1
+        
+    if obje[i]["depth"]==2:
+        
+        #this nested if will run only at initiation for declaration.
+        #it declares "items" in depth 1 as dectionary.
+        #which will be used to store all depth 2 elements.
+        
+        if declaration_variable2==1:
+            content[basic_index]["item"][index_count_1]["item"]={}
+            declaration_variable2=0
+            index_count_2=-1
+        
+            
+        index_count_2=index_count_2+1    
+        content[basic_index]["item"][index_count_1]["item"][index_count_2]={"title":obje[i]["title"],"depth":obje[i]["depth"],"item":"some more block"}
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
